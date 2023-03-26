@@ -71,17 +71,18 @@ service: tts.galaxybrain_tts_say
 data:
   options:
     voice: Bella
-    stability: 1
-    similarity: 1
-    model: gpt-3.5-turbo
-    temperature: 0.8
-    top_p: 1
-    max_tokens: null
-  entity_id: media_player.chromecast9105
-  message: |
+    temperature: 0.9
+  entity_id: media_player.bedroom_speaker
+  message: >
     The time is {{now()}}, the weather is:
-    {{ expand('weather.haven') }}
-    The user just woke up, greet the user with a summary of the weather, pointing out anything notable or unusual (if any).
+
+    {{ expand('weather.dark_sky') }}
+
+    The user just woke up, greet the user and provide a short summary of
+    today's weather, include anything notable.
+
+    Then state the date and share an interesting tidbit about today or today's
+    history.
 ```
 
-The parameters in `options` are fully optional, this allows you to override what's defined in `configuration.yaml`.
+The parameters in `options` are fully optional, this allows you to override any options defined in `configuration.yaml` except for the api keys.
