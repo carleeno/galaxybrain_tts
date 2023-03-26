@@ -1,0 +1,15 @@
+{
+  "codeowners": ["@carleeno"],
+  "config_flow": false,
+  "dependencies": [],
+  "documentation": "https://github.com/carleeno/galaxybrain_tts",
+  "domain": "galaxybrain_tts",
+  "iot_class": "cloud_polling",
+  "name": "GalaxyBrain TTS",
+  "requirements": [
+    "requests",
+    "mutagen",
+    "openai"
+  ],
+  "version": "1.0.0"
+}
