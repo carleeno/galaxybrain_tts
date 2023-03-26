@@ -3,7 +3,15 @@ import logging
 from homeassistant import core
 from homeassistant.components.tts import Provider, TtsAudioType
 
-from .const import CONF_SIMILARITY, CONF_STABILITY, CONF_VOICE
+from .const import (
+    CONF_SIMILARITY,
+    CONF_STABILITY,
+    CONF_VOICE,
+    CONF_MODEL,
+    CONF_MAX_TOKENS,
+    CONF_TEMPERATURE,
+    CONF_TOP_P,
+)
 from .elevenlabs_client import ElevenLabsClient
 from .openai_client import OpenAIClient
 
@@ -42,7 +50,15 @@ class GalaxyBrainProvider(Provider):
     @property
     def supported_options(self) -> list[str]:
         """Return list of supported options."""
-        return [CONF_VOICE, CONF_STABILITY, CONF_SIMILARITY]
+        return [
+            CONF_VOICE,
+            CONF_STABILITY,
+            CONF_SIMILARITY,
+            CONF_MODEL,
+            CONF_MAX_TOKENS,
+            CONF_TEMPERATURE,
+            CONF_TOP_P,
+        ]
 
     def get_tts_audio(
         self, message: str, language: str, options: dict | None = None
