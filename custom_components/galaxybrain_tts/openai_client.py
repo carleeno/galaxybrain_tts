@@ -47,9 +47,9 @@ class OpenAIClient:
                     {"role": "user", "content": PRE_PROMPT},
                     {"role": "user", "content": prompt},
                 ],
-                max_tokens=max_tokens,
-                top_p=top_p,
-                temperature=temperature,
+                max_tokens=int(max_tokens),
+                top_p=float(top_p),
+                temperature=float(temperature),
             )
             return response["choices"][0]["message"]["content"].strip()
         except OpenAIError as err:
