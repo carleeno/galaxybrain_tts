@@ -1,4 +1,5 @@
 import logging
+from time import sleep
 
 import openai
 from openai.error import OpenAIError
@@ -40,18 +41,24 @@ class OpenAIClient:
             CONF_TEMPERATURE, self.config.get(CONF_TEMPERATURE, DEFAULT_TEMPERATURE)
         )
         top_p = options.get(CONF_TOP_P, self.config.get(CONF_TOP_P, DEFAULT_TOP_P))
-        try:
-            response = openai.ChatCompletion.create(
-                model=model,
-                messages=[
-                    {"role": "user", "content": PRE_PROMPT},
-                    {"role": "user", "content": prompt},
-                ],
-                max_tokens=int(max_tokens),
-                top_p=float(top_p),
-                temperature=float(temperature),
-            )
-            return response["choices"][0]["message"]["content"].strip()
-        except OpenAIError as err:
-            _LOGGER.error("Error processing prompt: %s", err)
-            return f"Sorry, I had a problem talking to OpenAI: {err}"
+        tries = 0
+        while tries < 3:
+            try:
+                response = openai.ChatCompletion.create(
+                    model=model,
+                    messages=[
+                        {"role": "user", "content": PRE_PROMPT},
+                        {"role": "user", "content": prompt},
+                    ],
+                    max_tokens=int(max_tokens),
+                    top_p=float(top_p),
+                    temperature=float(temperature),
+                )
+                return response["choices"][0]["message"]["content"].strip()
+            except OpenAIError as err:
+                _LOGGER.warning("Error processing prompt: %s", err)
+                tries += 1
+                sleep(tries * 2)
+
+        _LOGGER.error("Error processing prompt after 3 attempts")
+        return "Sorry, I had a problem talking to OpenAI."
