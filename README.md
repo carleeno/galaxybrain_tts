@@ -27,6 +27,8 @@ tts:
     voice: Domi
     stability: 0.75
     similarity: 0.75
+    voice_model: eleven_multilingual_v1
+    optimize_streaming_latency: 1
     model: gpt-3.5-turbo
     temperature: 0.5
     top_p: 0.5
@@ -41,6 +43,8 @@ tts:
 - `voice` - (optional, default: Domi) use a different voice
 - `stability` - (optional, default: 0.75) set the stability of the speech synthesis
 - `similarity` - (optional, default: 0.75) set the clarity/similarity boost of the speech synthesis
+- `voice_model` - (optional, default: eleven_monolingual_v1) change the model used for requests
+- `optimize_streaming_latency` - (optional, default: 0) reduce latency at the cost of voice quality
 - `model` - (optional, default: gpt-3.5-turbo) specify an alternative chat model (completion models not supported)
 - `temperature` - (optional, default: 0.5) adjust the model's temperature setting
 - `top_p` - (optional, default: 0.5) adjust the model's top_p setting

@@ -8,6 +8,10 @@ CONF_STABILITY = "stability"
 DEFAULT_STABILITY = 0.75
 CONF_SIMILARITY = "similarity"
 DEFAULT_SIMILARITY = 0.9
+CONF_VOICE_MODEL = "voice_model"
+DEFAULT_VOICE_MODEL = "eleven_monolingual_v1"
+CONF_OPTIMIZE_LATENCY = "optimize_streaming_latency"
+DEFAULT_OPTIMIZE_LATENCY = 0
 
 CONF_OPENAI_API_KEY = "oai_api_key"
 CONF_MODEL = "model"
